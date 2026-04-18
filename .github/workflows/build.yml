@@ -4,9 +4,11 @@ jobs:
   build:  
     runs-on: ubuntu-latest  
     steps:  
-      - uses: actions/checkout@v4  
+      - name: Checkout code  
+        uses: actions/checkout@v4  
   
-      - uses: subosito/flutter-action@v2  
+      - name: Setup Flutter  
+        uses: subosito/flutter-action@v2  
         with:  
           flutter-version: '3.16.9'  
   
@@ -28,10 +30,23 @@ jobs:
           </layer-list>  
           EOF  
   
-      - name: Build APK  
-        run: flutter build apk --release  
+      - name: Create drawable night file  
+        run: |  
+          mkdir -p android/app/src/main/res/drawable-night  
+          cat > android/app/src/main/res/drawable-night/launch_background.xml << 'EOF'  
+          <?xml version="1.0" encoding="utf-8"?>  
+          <layer-list xmlns:android="http://schemas.android.com/apk/res/android">  
+              <item android:drawable="@android:color/black" />  
+          </layer-list>  
+          EOF  
   
-      - uses: actions/upload-artifact@v4  
+      - name: Build APK  
+        run: flutter build apk --release --no-tree-shake-icons  
+        env:  
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"  
+  
+      - name: Upload APK  
+        uses: actions/upload-artifact@v4  
         with:  
           name: release-apk  
           path: build/app/outputs/flutter-apk/app-release.apk
