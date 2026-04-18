@@ -15,30 +15,14 @@ jobs:
       - name: Flutter pub get  
         run: flutter pub get  
   
+      - name: Fix missing Android files  
+        run: |  
+          flutter create --org com.example --project-name insaver . --platforms android  
+  
       - name: Migrate to AndroidX  
         run: |  
           echo "android.useAndroidX=true" >> android/gradle.properties  
           echo "android.enableJetifier=true" >> android/gradle.properties  
-  
-      - name: Create drawable file  
-        run: |  
-          mkdir -p android/app/src/main/res/drawable  
-          cat > android/app/src/main/res/drawable/launch_background.xml << 'EOF'  
-          <?xml version="1.0" encoding="utf-8"?>  
-          <layer-list xmlns:android="http://schemas.android.com/apk/res/android">  
-              <item android:drawable="@android:color/white" />  
-          </layer-list>  
-          EOF  
-  
-      - name: Create drawable night file  
-        run: |  
-          mkdir -p android/app/src/main/res/drawable-night  
-          cat > android/app/src/main/res/drawable-night/launch_background.xml << 'EOF'  
-          <?xml version="1.0" encoding="utf-8"?>  
-          <layer-list xmlns:android="http://schemas.android.com/apk/res/android">  
-              <item android:drawable="@android:color/black" />  
-          </layer-list>  
-          EOF  
   
       - name: Build APK  
         run: flutter build apk --release --no-tree-shake-icons  
