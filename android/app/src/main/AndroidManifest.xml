@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.example.insaver">
+       <uses-permission android:name="android.permission.INTERNET"/>
+       <application
+            android:label="All Social Downloader"
+            android:name="${applicationName}">
+            <activity
+                android:name=".MainActivity"
+                android:exported="true"
+                android:launchMode="singleTop">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN"/>
+                    <category android:name="android.intent.category.LAUNCHER"/>
+                </intent-filter>
+            </activity>
+            <meta-data
+                android:name="flutterEmbedding"
+                android:value="2" />
+        </application>
+    </manifest>
