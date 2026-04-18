@@ -9,3 +9,14 @@ Download only content that you own or have permission to use.
 
 Latest builds are available in the Releases section.
 Make sure to enable "Install unknown apps" on your device.
+
+## 💰 Monetization
+
+- 🔓 Freemium model (basic features free)
+- 💎 Premium features available via subscription
+- 📺 Ads supported (free version)
+
+
+## 📄 License
+
+This project is proprietary software. Unauthorized copying, modification, or distribution is not allowed.
