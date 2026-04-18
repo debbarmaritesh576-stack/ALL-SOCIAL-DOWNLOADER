@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.example.insaver" // <--- Yahan apna package name change kar sakte hain
+    namespace "com.example.insaver"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
